@@ -1,0 +1,4 @@
+K1 6 30 LuoYang NanJing 14 130 70 0
+G3 9 40 BeiJing ShangHai 12 150 30 0
+G1 12 30 LuoYang ShangHai 10 140 50 22
+G2 14 30 XiAn ShangHai 9 120 60 0
