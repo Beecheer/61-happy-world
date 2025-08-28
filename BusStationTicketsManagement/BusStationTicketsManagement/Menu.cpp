@@ -4,14 +4,14 @@ using namespace std;
 
 int MainWindowSelect()
 {
-	string menu[3] = { "1.¹ÜÀíÔ±µÇÂ¼\n","2.ÆÕÍ¨¹Ë¿ÍµÇÂ¼\n","3.ÍË³ö\n" };
+	string menu[3] = { "1.ç®¡ç†å‘˜ç™»å½•\n","2.æ™®é€šé¡¾å®¢ç™»å½•\n","3.é€€å‡º\n" };
 	int choice;
 	while(1)
 	{
 		system("cls");
 		for (int i = 0; i < 3; i++)
 			cout << menu[i];
-		cout << "ÇëÊäÈëÑ¡Ôñ£¨1¡«3£©£º" << endl;
+		cout << "è¯·è¾“å…¥é€‰æ‹©ï¼ˆ1ï½3ï¼‰ï¼š" << endl;
 		cin >> choice;
 		if (choice == 1 || choice == 2 || choice == 3)
 			return choice;
@@ -19,14 +19,14 @@ int MainWindowSelect()
 }
 int AdminWindowSelect()
 {
-	string menu[5] = { "1.Ôö¼Ó³µ´ÎĞÅÏ¢\n","2.²é¿´ËùÓĞ³µ´ÎĞÅÏ¢\n","3.³µÁ¾ĞÅÏ¢²éÑ¯\n","4.×¢Ïú³µ´Î\n","5.ÍË³ö\n" };
+	string menu[5] = { "1.å¢åŠ è½¦æ¬¡ä¿¡æ¯\n","2.æŸ¥çœ‹æ‰€æœ‰è½¦æ¬¡ä¿¡æ¯\n","3.è½¦è¾†ä¿¡æ¯æŸ¥è¯¢\n","4.æ³¨é”€è½¦æ¬¡\n","5.é€€å‡º\n" };
 	int choice;
 	while (1)
 	{
 		system("cls");
 		for (int i = 0; i < 5; i++)
 			cout << menu[i];
-		cout << "ÇëÊäÈëÑ¡Ôñ£¨1¡«5£©£º" << endl;
+		cout << "è¯·è¾“å…¥é€‰æ‹©ï¼ˆ1ï½5ï¼‰ï¼š" << endl;
 		cin >> choice;
 		if (choice > 0 && choice < 6)
 			return choice;
@@ -34,14 +34,14 @@ int AdminWindowSelect()
 }
 int PassagerWindowSelect()
 {
-	string menu[4] = { "1.³µÁ¾ĞÅÏ¢²éÑ¯\n","2.¹ºÂò³µÆ±\n","3.ÍËÆ±\n","4.ÍË³ö\n" };
+	string menu[4] = { "1.è½¦è¾†ä¿¡æ¯æŸ¥è¯¢\n","2.è´­ä¹°è½¦ç¥¨\n","3.é€€ç¥¨\n","4.é€€å‡º\n" };
 	int choice;
 	while (1)
 	{
 		system("cls");
 		for (int i = 0; i < 4; i++)
 			cout << menu[i];
-		cout << "ÇëÊäÈëÑ¡Ôñ£¨1¡«4£©£º" << endl;
+		cout << "è¯·è¾“å…¥é€‰æ‹©ï¼ˆ1ï½4ï¼‰ï¼š" << endl;
 		cin >> choice;
 		if (choice > 0 && choice < 5)
 			return choice;

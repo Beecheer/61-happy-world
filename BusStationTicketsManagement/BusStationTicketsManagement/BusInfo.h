@@ -21,14 +21,14 @@ private:
 	int sold_number;
 
 #if BIN
-	// ¹¤¾ßº¯Êı£ºĞ´×Ö·û´®£¨ÏÈĞ´³¤¶È£¬ÔÙĞ´ÄÚÈİ£©
+	// å·¥å…·å‡½æ•°ï¼šå†™å­—ç¬¦ä¸²ï¼ˆå…ˆå†™é•¿åº¦ï¼Œå†å†™å†…å®¹ï¼‰
 	static void writeString(ofstream& ofs, const string& s) {
 		size_t len = s.size();
 		ofs.write((char*)&len, sizeof(len));
 		ofs.write(s.c_str(), len);
 	}
 
-	// ¹¤¾ßº¯Êı£º¶Á×Ö·û´®
+	// å·¥å…·å‡½æ•°ï¼šè¯»å­—ç¬¦ä¸²
 	static string readString(ifstream& ifs) {
 		size_t len;
 		ifs.read((char*)&len, sizeof(len));
@@ -44,13 +44,13 @@ public:
 		no(num),hour(h), minute(min), Starting_station(ss), Last_station(ls), time(t), fare(f), max_number(maxn), sold_number(sold) {}
 	void show()
 	{
-		cout << "³µ´Î£º" << no << "\n·¢³µÊ±¼ä£º" << (hour < 10 ? "0" : "") << hour << ":" << (minute < 10 ? "0" : "") << minute \
-			<< "\nÆğµãÕ¾£º" << Starting_station << "\nÖÕµãÕ¾£º" << Last_station << "\nĞĞ³µÊ±¼ä£º" << time \
-			<< "\nÆ±¼Û£º" << fare << "\n¶î¶¨ÔØÁ¿£º" << max_number << "\nÒÑÊÛÆ±Êı£º" << sold_number << endl;
+		cout << "è½¦æ¬¡ï¼š" << no << "\nå‘è½¦æ—¶é—´ï¼š" << (hour < 10 ? "0" : "") << hour << ":" << (minute < 10 ? "0" : "") << minute \
+			<< "\nèµ·ç‚¹ç«™ï¼š" << Starting_station << "\nç»ˆç‚¹ç«™ï¼š" << Last_station << "\nè¡Œè½¦æ—¶é—´ï¼š" << time \
+			<< "\nç¥¨ä»·ï¼š" << fare << "\né¢å®šè½½é‡ï¼š" << max_number << "\nå·²å”®ç¥¨æ•°ï¼š" << sold_number << endl;
 	}
 
 #if BIN
-	// Ğ´Èëµ½¶ş½øÖÆÎÄ¼ş
+	// å†™å…¥åˆ°äºŒè¿›åˆ¶æ–‡ä»¶
 	void writeBinary(ofstream& ofs) const {
 		writeString(ofs, no);
 		ofs.write((char*)&hour, sizeof(hour));
@@ -63,7 +63,7 @@ public:
 		ofs.write((char*)&sold_number, sizeof(sold_number));
 	}
 
-	// ´Ó¶ş½øÖÆÎÄ¼ş¶ÁÈ¡
+	// ä»äºŒè¿›åˆ¶æ–‡ä»¶è¯»å–
 	static Timetable readBinary(ifstream& ifs) {
 		string no = readString(ifs);
 		int hour, minute, fare, maxn, sold;
@@ -79,14 +79,14 @@ public:
 		return Timetable(no, hour, minute, start, last, t, fare, maxn, sold);
 	}
 #else
-	string toString() const // Êä³öµ½ÎÄ¼şµÄÒ»ĞĞ
+	string toString() const // è¾“å‡ºåˆ°æ–‡ä»¶çš„ä¸€è¡Œ
 	{
 		stringstream ss;
 		ss << no << " "	<< hour << " " << minute << " "	<< Starting_station << " " << Last_station << " " \
 			<< time << " " << fare << " " << max_number << " " << sold_number;
 		return ss.str();
 	}
-	static Timetable fromString(const string& line) // ´ÓÒ»ĞĞÎÄ±¾ÖĞ½âÎö
+	static Timetable fromString(const string& line) // ä»ä¸€è¡Œæ–‡æœ¬ä¸­è§£æ
 	{
 		string no, start, last;
 		int h, m, f, maxn, sold;

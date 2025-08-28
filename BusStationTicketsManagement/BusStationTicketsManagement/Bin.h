@@ -1,7 +1,7 @@
 #pragma once
-#define BIN 1 //BIN：二进制文件读写
+#define BIN 1 //BIN锛氫簩杩涘埗鏂囦欢璇诲啓
 
-#if BIN //文件名选择
+#if BIN //鏂囦欢鍚嶉�夋嫨
 #define FILENAME "bus.bin"
 #else 
 #define FILENAME "bus.txt"

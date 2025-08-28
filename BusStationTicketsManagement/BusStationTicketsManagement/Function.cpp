@@ -15,12 +15,12 @@
 #include "Bin.h"
 using namespace std;
 
-bool cmp(Timetable, Timetable); //cmpº¯ÊıÉùÃ÷£¬ÓÃÓÚ°´·¢³µÊ±¼äÉıĞòÅÅĞò
+bool cmp(Timetable, Timetable); //cmpå‡½æ•°å£°æ˜ï¼Œç”¨äºæŒ‰å‘è½¦æ—¶é—´å‡åºæ’åº
 void SortbyTime(vector<Timetable>);
 int find(vector<Timetable>, string);
 bool StopService(vector<Timetable>, string);
 
-void Signin() //(1)¹ÜÀíÔ±ÓÃ»§µÇÂ¼º¯Êı
+void Signin() //(1)ç®¡ç†å‘˜ç”¨æˆ·ç™»å½•å‡½æ•°
 {
 	
 	string username_login = "admin";
@@ -28,31 +28,31 @@ void Signin() //(1)¹ÜÀíÔ±ÓÃ»§µÇÂ¼º¯Êı
 	while (1)
 	{
 		string username;
-		char password[64]; //ÓÃÓÚ´æ´¢ÊäÈëµÄÃÜÂë
-		char ch; //Öğ×Ö·ûÂ¼Èë
+		char password[64]; //ç”¨äºå­˜å‚¨è¾“å…¥çš„å¯†ç 
+		char ch; //é€å­—ç¬¦å½•å…¥
 		int i = 0;
 
 		system("cls");
-		cout << "ÇëÊäÈëÓÃ»§Ãû£º";
+		cout << "è¯·è¾“å…¥ç”¨æˆ·åï¼š";
 		cin >> username;
-		cout << "ÇëÊäÈëÃÜÂë£º";
+		cout << "è¯·è¾“å…¥å¯†ç ï¼š";
 		while (1)
 		{
-			ch = _getch(); //ÎŞ»ØÏÔµØ¶ÁÈ¡Ò»¸ö×Ö·û
-			if (ch == '\r') { //¼ì²âµ½»Ø³µ¼ü½áÊøÊäÈë
-				password[i] = '\0'; //Ìí¼Ó×Ö·û´®½áÊø·û
+			ch = _getch(); //æ— å›æ˜¾åœ°è¯»å–ä¸€ä¸ªå­—ç¬¦
+			if (ch == '\r') { //æ£€æµ‹åˆ°å›è½¦é”®ç»“æŸè¾“å…¥
+				password[i] = '\0'; //æ·»åŠ å­—ç¬¦ä¸²ç»“æŸç¬¦
 				break;
 			}
-			if (i < 63) { // ·ÀÖ¹Êı×éÔ½½ç
+			if (i < 63) { // é˜²æ­¢æ•°ç»„è¶Šç•Œ
 				password[i++] = ch;
-				putchar('*'); // ÏÔÊ¾ĞÇºÅ
+				putchar('*'); // æ˜¾ç¤ºæ˜Ÿå·
 			}
 		}
 		if (username == username_login && !strcmp(password, password_login))
 			break;
 	}
 }
-int ReadFromFile(vector<Timetable>& timetables, const string& filename) //(2)´ÓÎÄ¼şfilenameÖĞµ¼ÈëÊı¾İ
+int ReadFromFile(vector<Timetable>& timetables, const string& filename) //(2)ä»æ–‡ä»¶filenameä¸­å¯¼å…¥æ•°æ®
 {
 #if BIN
 	if (LoadFromBinary(filename).empty())
@@ -72,27 +72,27 @@ int ReadFromFile(vector<Timetable>& timetables, const string& filename) //(2)´ÓÎ
 	}
 #endif
 }
-int AddBus(vector<Timetable>& timetables) //(3)Ìí¼Ó³µ´Î
+int AddBus(vector<Timetable>& timetables) //(3)æ·»åŠ è½¦æ¬¡
 {
 	string typein;
 	while (1)
 	{
-		cout << "ÇëÊäÈëĞèÒªÌí¼ÓµÄ³µ´ÎºÅ£º";
+		cout << "è¯·è¾“å…¥éœ€è¦æ·»åŠ çš„è½¦æ¬¡å·ï¼š";
 		cin >> typein;
 		if (find(timetables, typein) != -1)
-			cout << "ÒÑ´æÔÚ¸Ã³µ´Î£¬ÇëÖØĞÂÊäÈë¡£" << endl;
+			cout << "å·²å­˜åœ¨è¯¥è½¦æ¬¡ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚" << endl;
 		else break;
 	}
-	cout << "ÇëÒÀ´ÎÊäÈë·¢³µÊ±¼ä(Ê±)¡¢·¢³µÊ±¼ä(·Ö)¡¢Ê¼·¢Õ¾¡¢ÖÕµãÕ¾¡¢ĞĞ³µÊ±³¤¡¢Æ±¼Û¡¢×î´óÔØ¿ÍÁ¿¡¾¸÷ÏîÖ®¼äÊ¹ÓÃ¿Õ¸ñ·Ö¸ô¡¿£º" << endl;
+	cout << "è¯·ä¾æ¬¡è¾“å…¥å‘è½¦æ—¶é—´(æ—¶)ã€å‘è½¦æ—¶é—´(åˆ†)ã€å§‹å‘ç«™ã€ç»ˆç‚¹ç«™ã€è¡Œè½¦æ—¶é•¿ã€ç¥¨ä»·ã€æœ€å¤§è½½å®¢é‡ã€å„é¡¹ä¹‹é—´ä½¿ç”¨ç©ºæ ¼åˆ†éš”ã€‘ï¼š" << endl;
 	string start, last;
 	int h, m, f, maxn;
 	float t;
 	cin >> h >> m >> start >> last >> t >> f >> maxn;
 	timetables.push_back(Timetable(typein, h, m, start, last, t, f, maxn, 0));
-	cout << "µ¼Èë³É¹¦¡£" << endl;
+	cout << "å¯¼å…¥æˆåŠŸã€‚" << endl;
 	return timetables.size();
 }
-int WritetoFile(vector<Timetable> timetables, const string& filename) //(4)½«ÈİÆ÷ÖĞËùÓĞÔªËØĞ´ÈëÎÄ¼ş
+int WritetoFile(vector<Timetable> timetables, const string& filename) //(4)å°†å®¹å™¨ä¸­æ‰€æœ‰å…ƒç´ å†™å…¥æ–‡ä»¶
 {
 #if BIN
 	if (SaveToBinary(timetables, filename))
@@ -104,23 +104,23 @@ int WritetoFile(vector<Timetable> timetables, const string& filename) //(4)½«ÈİÆ
 	else return -1;
 #endif
 }
-void ShowBusInfo(vector<Timetable> timetables, int idx) //(5)ÏÔÊ¾ÈİÆ÷ÖĞÏÂ±êÎªidxµÄÔªËØĞÅÏ¢
+void ShowBusInfo(vector<Timetable> timetables, int idx) //(5)æ˜¾ç¤ºå®¹å™¨ä¸­ä¸‹æ ‡ä¸ºidxçš„å…ƒç´ ä¿¡æ¯
 {
 	cout << "-----------------------------------" << endl;
 	if (idx < timetables.size())
 		timetables[idx].show();
-	else cerr << "´íÎó£ºÏÂ±êÔ½½ç¡£" << endl;
+	else cerr << "é”™è¯¯ï¼šä¸‹æ ‡è¶Šç•Œã€‚" << endl;
 }
-void ShowTimetable(vector<Timetable> timetables) //(6)ÒÔ·¢³µÊ±¼äÉıĞòÅÅÁĞÏÔÊ¾ËùÓĞ³µ´ÎĞÅÏ¢
+void ShowTimetable(vector<Timetable> timetables) //(6)ä»¥å‘è½¦æ—¶é—´å‡åºæ’åˆ—æ˜¾ç¤ºæ‰€æœ‰è½¦æ¬¡ä¿¡æ¯
 {
 	sort(timetables.begin(), timetables.end(), cmp);
 	int idx = 0;
 	while (idx < timetables.size())
 		ShowBusInfo(timetables, idx++);
 }
-void Query(vector<Timetable> timetables) //(7)°´³µ´Î»òÖÕµãÕ¾½øĞĞ²éÑ¯
+void Query(vector<Timetable> timetables) //(7)æŒ‰è½¦æ¬¡æˆ–ç»ˆç‚¹ç«™è¿›è¡ŒæŸ¥è¯¢
 {
-	cout << "ÇëÊäÈë³µ´Î»òÖÕµãÕ¾½øĞĞ²éÑ¯£º";
+	cout << "è¯·è¾“å…¥è½¦æ¬¡æˆ–ç»ˆç‚¹ç«™è¿›è¡ŒæŸ¥è¯¢ï¼š";
 	string typein;
 	cin >> typein;
 	int idx, flag = 0;
@@ -128,13 +128,13 @@ void Query(vector<Timetable> timetables) //(7)°´³µ´Î»òÖÕµãÕ¾½øĞĞ²éÑ¯
 	{
 		if (timetables[idx].Last_station == typein)
 		{
-			flag = 1; //±ê¼ÇÎªÊäÈëÖÕµãÕ¾
+			flag = 1; //æ ‡è®°ä¸ºè¾“å…¥ç»ˆç‚¹ç«™
 			break;
 		}
 		else if (timetables[idx].no == typein)
 		{
 			ShowBusInfo(timetables, idx);
-			flag = 2; //±ê¼ÇÎªÊäÈë³µ´Î
+			flag = 2; //æ ‡è®°ä¸ºè¾“å…¥è½¦æ¬¡
 			break;
 		}
 	}
@@ -148,14 +148,14 @@ void Query(vector<Timetable> timetables) //(7)°´³µ´Î»òÖÕµãÕ¾½øĞĞ²éÑ¯
 		}
 	}
 }
-int find(vector<Timetable> timetables, string num) //(8)°´³µ´Î½øĞĞ²éÑ¯£¬·µ»ØË÷ÒıÏÂ±ê
+int find(vector<Timetable> timetables, string num) //(8)æŒ‰è½¦æ¬¡è¿›è¡ŒæŸ¥è¯¢ï¼Œè¿”å›ç´¢å¼•ä¸‹æ ‡
 {
 	int index = distance(timetables.begin(), find_if(timetables.begin(), timetables.end(), [num](const Timetable& obj) {return (obj.no == num); }));
 	if (index < timetables.size())
 		return index;
 	else return -1;
 }
-int find(vector<Timetable> timetables, string last_station, int* index) //(9)°´ÖÕµãÕ¾Ãû½øĞĞ²éÑ¯
+int find(vector<Timetable> timetables, string last_station, int* index) //(9)æŒ‰ç»ˆç‚¹ç«™åè¿›è¡ŒæŸ¥è¯¢
 {
 	int count = 0;
 	for (int i = 0; i < timetables.size(); i++)
@@ -165,37 +165,37 @@ int find(vector<Timetable> timetables, string last_station, int* index) //(9)°´Ö
 		return count;
 	else return -1;
 }
-int DelBus(vector<Timetable>& timetables) //(10)×¢Ïú³µ´Î
+int DelBus(vector<Timetable>& timetables) //(10)æ³¨é”€è½¦æ¬¡
 {
-	cout << "ÇëÊäÈëĞèÒª×¢ÏúµÄ³µ´ÎºÅ£º";
+	cout << "è¯·è¾“å…¥éœ€è¦æ³¨é”€çš„è½¦æ¬¡å·ï¼š";
 	string num;
 	cin >> num;
 	auto i = find_if(timetables.begin(), timetables.end(), [num](const Timetable& obj) {return (obj.no == num); });
 	if (i != timetables.end())
 		timetables.erase(i);
-	else cout << "´Ë³µ´Î²»´æÔÚ¡£" << endl;
+	else cout << "æ­¤è½¦æ¬¡ä¸å­˜åœ¨ã€‚" << endl;
 	return timetables.size();
 }
-void GenerateLogFileName(string& LogFileName) //(11)¸ù¾İµ±ÌìÈÕÆÚÉú³ÉÈÕÖ¾Ãû
+void GenerateLogFileName(string& LogFileName) //(11)æ ¹æ®å½“å¤©æ—¥æœŸç”Ÿæˆæ—¥å¿—å
 {
 	auto now = chrono::system_clock::now();
-	time_t now_c = chrono::system_clock::to_time_t(now); //µ÷ÓÃÏµÍ³Ê±¼ä
+	time_t now_c = chrono::system_clock::to_time_t(now); //è°ƒç”¨ç³»ç»Ÿæ—¶é—´
 	stringstream ss;
-	ss << put_time(localtime(&now_c), "%Y-%m-%d"); //¸ñÊ½»¯Êä³öÊ±¼ä£ºyyyy-mm-dd
+	ss << put_time(localtime(&now_c), "%Y-%m-%d"); //æ ¼å¼åŒ–è¾“å‡ºæ—¶é—´ï¼šyyyy-mm-dd
 #if BIN
 	LogFileName = ss.str() + ".log.bin";
 #else
 	LogFileName = ss.str() + ".log";
 #endif	
 }
-bool InitializationPassagerMode(vector<Timetable>& timetables, string LogFilename, const string& filename) //(12)ÅĞ¶ÏÈÕÖ¾ÎÄ¼şÊÇ·ñ´æÔÚ
+bool InitializationPassagerMode(vector<Timetable>& timetables, string LogFilename, const string& filename) //(12)åˆ¤æ–­æ—¥å¿—æ–‡ä»¶æ˜¯å¦å­˜åœ¨
 {
 	fstream read;
 	read.open(LogFilename, ios::in);
 	if (read.is_open())
 	{
 		ReadFromFile(timetables, LogFilename);
-		cout << "ÈÕÖ¾ÎÄ¼şµ¼Èë³É¹¦¡£" << endl;
+		cout << "æ—¥å¿—æ–‡ä»¶å¯¼å…¥æˆåŠŸã€‚" << endl;
 		return true;
 	}
 	else
@@ -207,9 +207,9 @@ bool InitializationPassagerMode(vector<Timetable>& timetables, string LogFilenam
 		return false;
 	}
 }
-void TicketOrder(vector<Timetable>& timetables) //(13)¹ºÆ±
+void TicketOrder(vector<Timetable>& timetables) //(13)è´­ç¥¨
 {
-	cout << "ÇëÊäÈëĞèÒª¹ºÂòµÄ³µ´Î£º";
+	cout << "è¯·è¾“å…¥éœ€è¦è´­ä¹°çš„è½¦æ¬¡ï¼š";
 	string no;
 	cin >> no;
 	int i = find(timetables, no);
@@ -217,7 +217,7 @@ void TicketOrder(vector<Timetable>& timetables) //(13)¹ºÆ±
 	{
 		if (i == -1)
 		{
-			cout << "³µ´Î²»´æÔÚ£¬ÇëÖØĞÂÊäÈë¡£" << endl;
+			cout << "è½¦æ¬¡ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚" << endl;
 			cin >> no;
 			i = find(timetables, no);
 			continue;
@@ -226,34 +226,34 @@ void TicketOrder(vector<Timetable>& timetables) //(13)¹ºÆ±
 		{
 			ShowBusInfo(timetables, i);
 			if (StopService(timetables, no))
-				cout << "¾à·¢³µÊ±¼äÉÙÓÚ10·ÖÖÓ£¬Í£Ö¹ÊÛÆ±¡£" << endl;
+				cout << "è·å‘è½¦æ—¶é—´å°‘äº10åˆ†é’Ÿï¼Œåœæ­¢å”®ç¥¨ã€‚" << endl;
 			else if (timetables[i].TicketAvailable() == 0)
-				cout << "¸Ã³µ´Î³µÆ±ÒÑÊÛóÀ¡£" << endl;
+				cout << "è¯¥è½¦æ¬¡è½¦ç¥¨å·²å”®ç½„ã€‚" << endl;
 			else
 			{
 				while (1)
 				{
-					cout << "ÇëÊäÈëĞèÒª¹ºÂòµÄÆ±Êı£º¡¾ÊäÈë-1ÍË³ö¹ºÂò¡¿";
+					cout << "è¯·è¾“å…¥éœ€è¦è´­ä¹°çš„ç¥¨æ•°ï¼šã€è¾“å…¥-1é€€å‡ºè´­ä¹°ã€‘";
 					int num;
 					cin >> num;
 					if (num == -1)
 						break;
 					else if (num > timetables[i].TicketAvailable())
 					{
-						cout << "¹ºÂòÆ±Êı´óÓÚ¿ÉÊÛÆ±Êı£¬ÎŞ·¨¹ºÂò¡£" << endl;
+						cout << "è´­ä¹°ç¥¨æ•°å¤§äºå¯å”®ç¥¨æ•°ï¼Œæ— æ³•è´­ä¹°ã€‚" << endl;
 						continue;
 					}
 					else if (num > 0)
 					{
 						timetables[i].SetSold(timetables[i].GetSold() + num);
-						cout << "¹ºÂò³É¹¦¡£" << endl;
+						cout << "è´­ä¹°æˆåŠŸã€‚" << endl;
 						break;
 					}
 					else 
 					{
-						cout << "ÊäÈëÎŞĞ§£¬ÇëÖØĞÂÊäÈë¡£" << endl;
+						cout << "è¾“å…¥æ— æ•ˆï¼Œè¯·é‡æ–°è¾“å…¥ã€‚" << endl;
 						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ¶ªÆú»º³åÇøÄÚÈİ
+						cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ä¸¢å¼ƒç¼“å†²åŒºå†…å®¹
 						continue;
 					}
 				}
@@ -262,9 +262,9 @@ void TicketOrder(vector<Timetable>& timetables) //(13)¹ºÆ±
 		break;
 	}
 }
-void TicketDelete(vector<Timetable>& timetables) //(14)ÍËÆ±
+void TicketDelete(vector<Timetable>& timetables) //(14)é€€ç¥¨
 {
-	cout<< "ÇëÊäÈëĞèÒªÍËÆ±µÄ³µ´Î£º";
+	cout<< "è¯·è¾“å…¥éœ€è¦é€€ç¥¨çš„è½¦æ¬¡ï¼š";
 	string no;
 	cin >> no;
 	int i = find(timetables, no);
@@ -272,41 +272,41 @@ void TicketDelete(vector<Timetable>& timetables) //(14)ÍËÆ±
 	{
 		if (i == -1)
 		{
-			cout << "³µ´Î²»´æÔÚ£¬ÇëÖØĞÂÊäÈë¡£" << endl;
+			cout << "è½¦æ¬¡ä¸å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ã€‚" << endl;
 			continue;
 		}
 		else if (i >= 0)
 		{
 			ShowBusInfo(timetables, i);
 			if (StopService(timetables, no))
-				cout << "¾à·¢³µÊ±¼äÉÙÓÚ10·ÖÖÓ£¬Í£Ö¹ÍËÆ±¡£" << endl;
+				cout << "è·å‘è½¦æ—¶é—´å°‘äº10åˆ†é’Ÿï¼Œåœæ­¢é€€ç¥¨ã€‚" << endl;
 			else if (timetables[i].GetSold() == 0)
-				cout << "¸Ã³µ´Î³µÆ±ÉĞÎ´ÊÛ³ö¡£" << endl;
+				cout << "è¯¥è½¦æ¬¡è½¦ç¥¨å°šæœªå”®å‡ºã€‚" << endl;
 			else
 			{
 				while (1)
 				{
-					cout << "ÇëÊäÈëĞèÒªÍËÆ±µÄÆ±Êı£º¡¾ÊäÈë-1ÍË³öÍËÆ±¡¿";
+					cout << "è¯·è¾“å…¥éœ€è¦é€€ç¥¨çš„ç¥¨æ•°ï¼šã€è¾“å…¥-1é€€å‡ºé€€ç¥¨ã€‘";
 					int num;
 					cin >> num;
 					if (num == -1)
 						break;
 					else if (num > timetables[i].GetSold())
 					{
-						cout << "ÍËÆ±Æ±Êı´óÓÚÒÑÊÛÆ±Êı£¬ÎŞ·¨ÍËÆ±¡£" << endl;
+						cout << "é€€ç¥¨ç¥¨æ•°å¤§äºå·²å”®ç¥¨æ•°ï¼Œæ— æ³•é€€ç¥¨ã€‚" << endl;
 						continue;
 					}
 					else if (num > 0)
 					{
 						timetables[i].SetSold(timetables[i].GetSold() - num);
-						cout << "ÍËÆ±³É¹¦¡£" << endl;
+						cout << "é€€ç¥¨æˆåŠŸã€‚" << endl;
 						break;
 					}
 					else 
 					{
-						cout << "ÊäÈëÎŞĞ§£¬ÇëÖØĞÂÊäÈë¡£" << endl;
+						cout << "è¾“å…¥æ— æ•ˆï¼Œè¯·é‡æ–°è¾“å…¥ã€‚" << endl;
 						cin.clear();
-						cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ¶ªÆú»º³åÇøÄÚÈİ
+						cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ä¸¢å¼ƒç¼“å†²åŒºå†…å®¹
 						continue;
 					}
 				}
@@ -315,12 +315,12 @@ void TicketDelete(vector<Timetable>& timetables) //(14)ÍËÆ±
 		break;
 	}
 }
-bool StopService(vector<Timetable> timetables, string no) //(15)ÅĞ¶ÏÊÇ·ñÍ£Ö¹ÊÛÆ±/ÍËÆ±
+bool StopService(vector<Timetable> timetables, string no) //(15)åˆ¤æ–­æ˜¯å¦åœæ­¢å”®ç¥¨/é€€ç¥¨
 {
 	int i = find(timetables,no);
 
 	auto now = chrono::system_clock::now();
-	time_t now_c = std::chrono::system_clock::to_time_t(now); //µ÷ÓÃÏµÍ³Ê±¼ä
+	time_t now_c = std::chrono::system_clock::to_time_t(now); //è°ƒç”¨ç³»ç»Ÿæ—¶é—´
 	tm* local_tm = localtime(&now_c);
 	int now_hour = local_tm->tm_hour;
 	int now_minute = local_tm->tm_min;
@@ -328,14 +328,14 @@ bool StopService(vector<Timetable> timetables, string no) //(15)ÅĞ¶ÏÊÇ·ñÍ£Ö¹ÊÛÆ±
 		return true;
 	else return false;
 }
-void SortbyTime(vector<Timetable> timetables) //(16)½«ÈİÆ÷ÖĞÔªËØ°´·¢³µÊ±¼ä½øĞĞÉıĞòÅÅĞò
+void SortbyTime(vector<Timetable> timetables) //(16)å°†å®¹å™¨ä¸­å…ƒç´ æŒ‰å‘è½¦æ—¶é—´è¿›è¡Œå‡åºæ’åº
 {
 	sort(timetables.begin(), timetables.end(), cmp);
 }
 bool Quit()
 {
 	system("cls");
-	cout << "ÊÇ·ñÒªÍË³öÕû¸öÏµÍ³£¿(Y/N)" << endl;
+	cout << "æ˜¯å¦è¦é€€å‡ºæ•´ä¸ªç³»ç»Ÿï¼Ÿ(Y/N)" << endl;
 	string typein;
 	cin >> typein;
 	if (typein == "Y" || typein == "y" || typein == "Yes" || typein == "YES")

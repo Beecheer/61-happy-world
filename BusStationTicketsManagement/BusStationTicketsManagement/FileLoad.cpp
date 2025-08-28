@@ -8,29 +8,29 @@
 using namespace std;
 
 #if BIN
-// ±£´æ vector µ½¶ş½øÖÆÎÄ¼ş
+// ä¿å­˜ vector åˆ°äºŒè¿›åˆ¶æ–‡ä»¶
 bool SaveToBinary(const vector<Timetable>& data, const string& filename) 
 {
     ofstream ofs(filename, ios::binary);
     if (!ofs) {
-        cerr << "ÎŞ·¨´ò¿ªÎÄ¼şĞ´Èë: " << filename << endl;
+        cerr << "æ— æ³•æ‰“å¼€æ–‡ä»¶å†™å…¥: " << filename << endl;
         return false;
     }
     size_t n = data.size();
-    ofs.write((char*)&n, sizeof(n)); // ÏÈĞ´ÈëÔªËØ¸öÊı
+    ofs.write((char*)&n, sizeof(n)); // å…ˆå†™å…¥å…ƒç´ ä¸ªæ•°
     for (const auto& t : data) {
         t.writeBinary(ofs);
     }
     return true;
 }
 
-// ´Ó¶ş½øÖÆÎÄ¼ş¶ÁÈ¡
+// ä»äºŒè¿›åˆ¶æ–‡ä»¶è¯»å–
 vector<Timetable> LoadFromBinary(const string& filename) 
 {
     vector<Timetable> result;
     ifstream ifs(filename, ios::binary);
     if (!ifs) {
-        cerr << "ÎŞ·¨´ò¿ªÎÄ¼ş¶ÁÈ¡: " << filename << endl;
+        cerr << "æ— æ³•æ‰“å¼€æ–‡ä»¶è¯»å–: " << filename << endl;
         return result;
     }
     size_t n;
@@ -41,13 +41,13 @@ vector<Timetable> LoadFromBinary(const string& filename)
     return result;
 }
 #else
-// ½« vector Ğ´ÈëÎÄ¼ş
+// å°† vector å†™å…¥æ–‡ä»¶
 bool SaveToFile(const vector<Timetable>& data, const string& filename)
 {
     ofstream ofs(filename);
     if (!ofs) 
     {
-        cerr << "ÎŞ·¨´ò¿ªÎÄ¼şĞ´Èë: " << filename << endl;
+        cerr << "æ— æ³•æ‰“å¼€æ–‡ä»¶å†™å…¥: " << filename << endl;
         return false;
     }
     for (const auto& t : data) 
@@ -57,13 +57,13 @@ bool SaveToFile(const vector<Timetable>& data, const string& filename)
     return true;
 }
 
-// ´ÓÎÄ¼ş¶ÁÈ¡µ½ vector
+// ä»æ–‡ä»¶è¯»å–åˆ° vector
 vector<Timetable> LoadFromFile(const string& filename)
 {
     vector<Timetable> result;
     ifstream ifs(filename);
     if (!ifs) {
-        cerr << "ÎŞ·¨´ò¿ªÎÄ¼ş½øĞĞ¶ÁÈ¡: " << filename << endl;
+        cerr << "æ— æ³•æ‰“å¼€æ–‡ä»¶è¿›è¡Œè¯»å–: " << filename << endl;
         return result;
     }
     string line;
