@@ -1,0 +1,4 @@
+G101 10 30 Beijing Shanghai 4.5 560 1000 0
+Y78 22 12 Luoyang Xi'an 2.1 70 600 52
+D202 9 15 Nanjing Guangzhou 8 420 800 0
+G461 9 4 Shanghaihongqiao Chengdudong 10.5 1121 850 0
