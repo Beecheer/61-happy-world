@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 using namespace std;
 
@@ -19,17 +19,24 @@ int MainWindowSelect()
 }
 int AdminWindowSelect()
 {
-	string menu[5] = { "1.增加车次信息\n","2.查看所有车次信息\n","3.车辆信息查询\n","4.注销车次\n","5.退出\n" };
+	string menu[8] = { "1.增加车次信息\n","2.查看所有车次信息<发车时间>\n","3.查看所有车次信息<车次>\n","4.查看所有车次信息<终点站>\n","5.车辆信息查询\n","6.注销车次\n","7.统计当月日志数据\n","8.退出\n" };
 	int choice;
 	while (1)
 	{
 		system("cls");
-		for (int i = 0; i < 5; i++)
+		for (int i = 0; i < 8; i++)
 			cout << menu[i];
-		cout << "请输入选择（1～5）：" << endl;
+		cout << "请输入选择（1～8）：" << endl;
 		cin >> choice;
-		if (choice > 0 && choice < 6)
+		if (choice > 0 && choice < 9)
 			return choice;
+		else
+		{
+			cout << "输入无效，请重新输入。" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 丢弃缓冲区内容
+			continue;
+		}
 	}
 }
 int PassagerWindowSelect()
@@ -45,5 +52,12 @@ int PassagerWindowSelect()
 		cin >> choice;
 		if (choice > 0 && choice < 5)
 			return choice;
+		else
+		{
+			cout << "输入无效，请重新输入。" << endl;
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 丢弃缓冲区内容
+			continue;
+		}
 	}
 }

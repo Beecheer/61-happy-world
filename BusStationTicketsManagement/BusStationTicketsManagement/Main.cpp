@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 #include <cstdlib>
@@ -6,6 +6,7 @@
 #include "BusInfo.h"
 #include "Function.h"
 #include "FileLoad.h"
+#include "ExtraFunction.h"
 #include "Bin.h"
 
 using namespace std;
@@ -53,15 +54,17 @@ void AdminMode(vector<Timetable>& timetables, const string& filename)
 	int n = ReadFromFile(timetables, FILENAME);
 	while (1)
 	{
-		int AdminChoice = AdminWindowSelect();
-		switch (AdminChoice)
+		int AdminChoice;
+		switch (AdminChoice = AdminWindowSelect())
 		{
 		case 1:n = AddBus(timetables); cout << "成功添加车次，现有" << n << "个车次。" << endl; WritetoFile(timetables, filename); system("pause"); break; //增加车次信息，并及时写到文件中
-		case 2:ShowTimetable(timetables); system("pause"); break; //浏览时刻表
-		case 3:Query(timetables); system("pause"); break; //车辆信息查询
-		case 4:n = DelBus(timetables); system("pause"); WritetoFile(timetables, filename); break; //注销车次，并及时写到文件中
-		case 5:WritetoFile(timetables, filename);
-			return; //返回上级菜单，并将信息保存回 bus.txt 文件
+		case 2:ShowTimetable(timetables); system("pause"); break; //浏览时刻表<发车时间>
+		case 3:ShowTimetable_no(timetables); system("pause"); break; //浏览时刻表<车次>
+		case 4:ShowTimetable_last(timetables); system("pause"); break; //浏览时刻表<终点站>
+		case 5:Query(timetables); system("pause"); break; //车辆信息查询
+		case 6:n = DelBus(timetables); system("pause"); WritetoFile(timetables, filename); break; //注销车次，并及时写到文件中
+		case 7: { vector<Timetable> analysis; int days = LogLoad(analysis); Statistics(analysis, days); system("pause"); break; } //统计当月日志数据，展示车次、总收入、日均售票数、日均乘车人数
+		case 8:WritetoFile(timetables, filename); return; //返回上级菜单，并将信息保存回 bus.txt 文件
 		}
 	}
 }
@@ -78,7 +81,7 @@ void PassagerMode(vector<Timetable>& timetables, const string& filename)
 		case 1:Query(timetables); system("pause"); break; //车辆信息查询
 		case 2:TicketOrder(timetables); WritetoFile(timetables, LogFileName); system("pause"); break; //购买车票，并更改文件信息
 		case 3:TicketDelete(timetables); WritetoFile(timetables, LogFileName); system("pause"); break; //退回车票，并更改文件信息
-		case 4:WritetoFile(timetables, LogFileName); system("pause"); return; //返回上级菜单
+		case 4:WritetoFile(timetables, LogFileName); return; //返回上级菜单
 		}
 	}
 }

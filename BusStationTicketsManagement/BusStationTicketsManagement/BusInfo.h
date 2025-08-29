@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
@@ -68,14 +68,17 @@ public:
 		string no = readString(ifs);
 		int hour, minute, fare, maxn, sold;
 		float t;
-		string start = readString(ifs);
-		string last = readString(ifs);
+		string start, last;
+
 		ifs.read((char*)&hour, sizeof(hour));
 		ifs.read((char*)&minute, sizeof(minute));
+		start = readString(ifs);
+		last = readString(ifs);
 		ifs.read((char*)&t, sizeof(t));
 		ifs.read((char*)&fare, sizeof(fare));
 		ifs.read((char*)&maxn, sizeof(maxn));
 		ifs.read((char*)&sold, sizeof(sold));
+
 		return Timetable(no, hour, minute, start, last, t, fare, maxn, sold);
 	}
 #else
@@ -100,6 +103,7 @@ public:
 	int GetHour() const { return hour; }
 	int GetMinute() const { return minute; }
 	string GetLastStation() const { return Last_station; }
+	int GetFare() const { return fare; }
 	int GetSold() const { return sold_number; }
 	void SetSold(int s) { sold_number = s; }
 	int TimeCompare()

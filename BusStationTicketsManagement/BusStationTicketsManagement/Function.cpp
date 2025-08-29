@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -146,7 +146,9 @@ void Query(vector<Timetable> timetables) //(7)按车次或终点站进行查询
 			if (timetables[idx].Last_station == typein)
 				ShowBusInfo(timetables, idx);
 		}
+		break;
 	}
+	else cout << "输入的车次/终点站不存在。" << endl;
 }
 int find(vector<Timetable> timetables, string num) //(8)按车次进行查询，返回索引下标
 {
@@ -226,7 +228,7 @@ void TicketOrder(vector<Timetable>& timetables) //(13)购票
 		{
 			ShowBusInfo(timetables, i);
 			if (StopService(timetables, no))
-				cout << "距发车时间少于10分钟，停止售票。" << endl;
+				cout << "距发车时间少于10分钟或已开车，停止售票。" << endl;
 			else if (timetables[i].TicketAvailable() == 0)
 				cout << "该车次车票已售罄。" << endl;
 			else
@@ -279,7 +281,7 @@ void TicketDelete(vector<Timetable>& timetables) //(14)退票
 		{
 			ShowBusInfo(timetables, i);
 			if (StopService(timetables, no))
-				cout << "距发车时间少于10分钟，停止退票。" << endl;
+				cout << "距发车时间少于10分钟或已开车，停止退票。" << endl;
 			else if (timetables[i].GetSold() == 0)
 				cout << "该车次车票尚未售出。" << endl;
 			else

@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
@@ -50,7 +50,7 @@ bool SaveToFile(const vector<Timetable>& data, const string& filename)
         cerr << "无法打开文件写入: " << filename << endl;
         return false;
     }
-    for (const auto& t : data) 
+    for (const auto& t : data)
     {
         ofs << t.toString() << endl;
     }
